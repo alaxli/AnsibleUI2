@@ -1,0 +1,80 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AnsiblUI2</title>
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/AdminLTE.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/iCheck/square/blue.css' %}" />
+    <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/icheck.min.js' %}"></script>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="/static/ext/js/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="login.html"><b>登 录</b></a>
+        </div>
+        <!-- login-log -->
+        <div class="login-box-body">
+            <form id="login-form" action="{{ action  }}" method="post">
+                {% csrf_token %}
+                <div class="form-group has-feedback">
+                    <input type="text" id="inputUsername" name="username" class="form-control" placeholder="用户名">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="密码">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="checkbox icheck">
+                            <label>
+                                <input id="rememberMe" name="rememberme" type="checkbox"> 记住我
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
+                    </div>
+                </div>
+                <input type="hidden" name="next" value="{{next}}" />
+            </form>
+        </div>
+    </div>
+    <!-- /login box -->
+</body>
+<script>
+$(function() {
+    $('input').iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue',
+        increaseArea: '20%' // optional
+    });
+});
+$(document).ready(function() {
+    console.log("{{login_errors|safe}}")
+    if ("{{ login_errors|safe }}" == 'True') {
+        $(".login-box").append("<div><div class=\"alert alert-danger\">用户名或密码错误</div></div>");
+        $(".alert").fadeOut(5000, function() {
+            $(".alert").remove()
+        });
+    }
+})
+</script>
+
+</html>

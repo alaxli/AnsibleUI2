@@ -1,0 +1,255 @@
+{% extends "base.html" %} {% block content %}
+<section class="row">
+    <div class="col-md-12">
+        <ol class="breadcrumb">
+            <li class="active"><i class="fa fa-dashboard"></i> 概览</a>
+            </li>
+        </ol>
+    </div>
+</section>
+<section class="content">
+    <div class="content-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="info-box">
+                    <span class="info-box-icon bg-green">
+                        <i class="fa fa-server"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">主机数</span>
+                        <span class="info-box-number">20</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-box">
+                    <span class="info-box-icon bg-yellow">
+                        <i class="fa fa-wrench"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">系统管理项目</span>
+                        <span class="info-box-number">15</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-box">
+                    <span class="info-box-icon bg-aqua">
+                        <i class="fa fa-tasks"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">发布管理项目</span>
+                        <span class="info-box-number">10</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">一周任务执行情况</h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div id="chart-tasks-trend" style="height:300px;"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <div id="chart-tasks-rate" style="height:300px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">最近执行任务</h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table class="table no-margin">
+                                <thead>
+                                    <tr>
+                                        <th>任务ID</th>
+                                        <th>任务名称</th>
+                                        <th>状态</th>
+                                        <th>执行人</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="font-size:14px;">
+                                    <tr>
+                                        <td><a href="#">ID9842</a></td>
+                                        <td>防火墙管理</td>
+                                        <td><span class="label label-success">Succeed</span></td>
+                                        <td>User1</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">ID1848</a></td>
+                                        <td>业务发布</td>
+                                        <td><span class="label label-warning">Pending</span></td>
+                                        <td>User2</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">ID7429</a></td>
+                                        <td>安装Nignx</td>
+                                        <td><span class="label label-danger">Failed</span></td>
+                                        <td>User3</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">ID7429</a></td>
+                                        <td>文件分发</td>
+                                        <td><span class="label label-info">Processing</span></td>
+                                        <td>User1</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">ID1848</a></td>
+                                        <td>业务发布</td>
+                                        <td><span class="label label-warning">Pending</span></td>
+                                        <td>User2</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">ID7429</a></td>
+                                        <td>批量命令</td>
+                                        <td><span class="label label-danger">Failed</span></td>
+                                        <td>User1</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">ID9842</a></td>
+                                        <td>权限管理</td>
+                                        <td><span class="label label-success">Succeed</span></td>
+                                        <td>User2</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <div class="col-md-6">
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">任务执行时长统计</h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div id="chart-tasks-time" style="height:300px;"></div>
+                </div>
+            </div>
+</section>
+<script>
+$(document).ready(function() {
+    $("#nav-dashboard").addClass("active");
+    $('#chart-tasks-trend').highcharts({
+        title: {
+            text: '',
+        },
+        xAxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+            ]
+        },
+        yAxis: {
+            title: {
+                text: ''
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: '成功',
+            color: '#7cbb00',
+            data: [7, 6, 9, 14, 18, 21, 25, 26, 23, 18, 13, 9]
+        }, {
+            name: '失败',
+            color: '#f65314',
+            data: [2, 8, 5, 11, 17, 2, 4, 21, 20, 14, 8, 2]
+        }]
+    });
+
+    $('#chart-tasks-rate').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45
+            }
+        },
+        title: {
+            text: ''
+        },
+        plotOptions: {
+            pie: {
+                innerSize: 100,
+                depth: 45
+            }
+        },
+        series: [{
+            name: 'Delivered amount',
+            colors: ['#7cbb00', '#f65314'],
+            data: [
+                ['成功', 58],
+                ['失败', 23],
+            ]
+        }]
+    });
+
+    $('#chart-tasks-time').highcharts({
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45
+            }
+        },
+        title: {
+            text: ''
+        },
+        plotOptions: {
+            pie: {
+                innerSize: 100,
+                depth: 45
+            }
+        },
+        series: [{
+            name: 'Delivered amount',
+            data: [
+                ['1分钟内', 58],
+                ['1-3分钟内', 23],
+                ['3-5分钟内', 13],
+                ['大于5分钟', 13],
+            ]
+        }]
+    });
+
+});
+</script>
+{% endblock %}

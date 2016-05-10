@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="wrapper">
+        <!-- Main content -->
+        <section class="content">
+              <div class="error-page">
+                <h2 class="headline text-red"> 500</h2>
+              </div>
+              <div class="error-content text-white">
+                  <h3 style="margin-top: 60px;"><i class="fa fa-warning text-red"></i> Oops! Page not found.</h3>
+                  <p>
+                  We could not find the page you were looking for.<br/>
+                    Meanwhile, you may <a href="{% url 'home' %}">return to dashboard</a>
+                  </p>
+                </div><!-- /.error-content -->
+        </section><!-- /.content -->
+</div>
+
+{% endblock %}

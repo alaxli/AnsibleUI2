@@ -1,0 +1,153 @@
+{% load staticfiles %}
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}">
+
+<head>
+    <meta charset="utf-8">
+    <title>AnsibleUI2</title>
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ansible UI 2">
+    <meta name="author" content="AlexLi">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/AdminLTE.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/skins/_all-skins.min.css' %}" />
+    <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/app.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slimscroll.min.js' %}"></script>
+    <script src="{% static 'js/highcharts.js' %}"></script>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="/static/ext/js/html5.js"></script>
+    <![endif]-->
+    <!--[if IE 7]>
+        <link type="text/css" rel="stylesheet" href="/static/ext/css/font-awesome-ie7.min.css"/>
+    <![endif]-->
+    <style>
+    body {
+        font-family: 微软雅黑;
+    }
+    
+    a {
+        TEXT-DECORATION: none;
+    }
+    </style>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini fixed" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;" data-spy="scroll" data-target="#scrollspy">
+    <div class="wrapper">
+        <header class="main-header">
+            <a href="#" class="logo">
+                <span class="logo-mini"><img src="{% static 'img/ansibleui.png' %}" alt="" width="40" height="40"></span>
+                <span class="logo-lg">
+                <p><img src="{% static 'img/ansibleui.png' %}" alt="" width="40" height="40" style="vertical-align:baseline; margin-right:-7px;"><b>nsibleUI</b> 2.0</p>
+            </span>
+            </a>
+            <nav class="navbar navbar-static-top" role="navigation">
+                <a href="" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#" data-toggle="control-sidebar">
+                                <i class="fa fa-gears"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'logout' %}">
+                                <i class="fa fa-sign-out"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <aside class="main-sidebar">
+            <section class="sidebar" id="scrollspy">
+                <ul class="sidebar-menu">
+                    <li id="nav-dashboard">
+                        <a href="#">
+                            <i class="fa fa-dashboard"></i>
+                            <span>概览</span>
+                        </a>
+                    </li>
+                    <li id="nav-asset">
+                        <a href="#">
+                            <i class="fa fa-sitemap"></i>
+                            <span>资产管理</span>
+                        </a>
+                    </li>
+                    <li id="nav-system">
+                        <a href="#">
+                            <i class="fa fa-server"></i>
+                            <span>系统管理</span>
+                        </a>
+                    </li>
+                    <li id="nav-publish">
+                        <a href="#">
+                            <i class="fa fa-bank"></i>
+                            <span>发布管理</span>
+                        </a>
+                    </li>
+                    <li class="treeview" id="nav-batch">
+                        <a href="#">
+                            <i class="fa fa-file-text-o"></i>
+                            <span>批量作业</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li id="nav-batch-command">
+                                <a href="#">
+                                    <i class="fa fa-circle-o"></i>
+                                    <span>批量命令</span>
+                                </a>
+                            </li>
+                            <li id="nav-batch-file">
+                                <a href="#">
+                                    <i class="fa fa-circle-o"></i>
+                                    <span>文件分发</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </aside>
+        <div class="content-wrapper">
+            {% block content %} {% endblock %}
+        </div>
+        <aside class="control-sidebar control-sidebar-light">
+            <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+                <li>
+                    <a href="#control-sidebar-message" data-toggle="tab">
+                        <i class="fa fa-envelope-o"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#control-sidebar-warning" data-toggle="tab">
+                        <i class="fa fa-bell-o"></i>
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane" id="control-sidebar-message">
+                    <h3 class="control-sidebar-heading"></h3>
+                    <ul class="control-sidebar-menu"></ul>
+                </div>
+                <div class="tab-pane" id="control-sidebar-warning">
+                    <h3 class="control-sidebar-heading"></h3>
+                    <ul class="control-sidebar-menu"></ul>
+                </div>
+            </div>
+        </aside>
+        <div class="control-sidebar-bg"></div>
+    </div>
+</body>
+<script>
+var urlhead = '/ansibleui';
+</script>
+
+</html>
