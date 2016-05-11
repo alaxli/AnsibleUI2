@@ -4,15 +4,8 @@ from django.contrib import admin
 from asset import models
 
 
-class HostInline(admin.TabularInline):
-    model = models.HostLog
-    readonly_fields = ('born_time', )
-    raw_id_fields = ('op', )
-    suit_classes = 'inline-group suit-tab suit-tab-log show'
-
-
 class HostAdmin(admin.ModelAdmin):
-    inlines = (HostInline,)
+    # inlines = (HostInline,)
     raw_id_fields = ('maintenance_group_name',)
     readonly_fields = ('born_time', )
     list_display = ('sn', 'type', 'vendor', 'status')
@@ -70,6 +63,7 @@ class NetworkDeviceAdmin(admin.ModelAdmin):
         # ('asset/maintenance_log_table.html', 'bottom', 'maintenance'),
     )
 
+
 class StorageAdmin(admin.ModelAdmin):
     list_display = ('device_type', 'manufacturers', 'sn', 'be_from', 'ownership', 'contract')
     search_fields = ('device_type', 'manufacturers', 'sn', 'be_from', 'ownership', 'contract')
@@ -103,6 +97,7 @@ class StorageAdmin(admin.ModelAdmin):
         #('asset/maintenance_log_table.html', 'bottom', 'maintenance'),
     )
 
+
 class TapeAdmin(admin.ModelAdmin):
     list_display = ('device_type', 'product_model', 'sn', 'be_from', 'ownership', 'manufacturers')
     search_fields = ('device_type', 'product_model', 'sn', 'be_from', 'manufacturers', 'ownership__name')
@@ -134,12 +129,14 @@ class TapeAdmin(admin.ModelAdmin):
         ('asset/maintenance_log_table.html', 'bottom', 'maintenance'),
     )
 
+
 class ToolsAdmin(admin.ModelAdmin):
     list_display = ('device_type', 'part_No', 'amount', 'inventory_num', 'color', 'size', 'be_from',
                     'ownership')
     list_filter = ('device_type', 'be_from', 'part_No')
     search_fields = ('device_type', 'be_from', 'part_No')
     readonly_fields = ('born_time',)
+
 
 class EquipmentAdmin(admin.ModelAdmin):
     list_display = ('type', 'product_model', 'sn', 'amount', 'size', 'be_from', 'purchase_date')
@@ -164,6 +161,7 @@ class EquipmentAdmin(admin.ModelAdmin):
         )
     ]
 
+
 class SoftwareAdmin(admin.ModelAdmin):
     list_display = ('name', 'version', 'number', 'be_from', 'purchase_date', 'vendor')
     search_fields = ('name', 'version', 'number', 'be_from', 'purchase_date', 'vendor')
@@ -185,30 +183,36 @@ class SoftwareAdmin(admin.ModelAdmin):
         )
     ]
 
+
 class IndustryGroupAdmin(admin.ModelAdmin):
     list_display = ('name', )
     readonly_fields = ('born_time',)
+
 
 class MaintenanceAdmin(admin.ModelAdmin):
     list_display = ('maintenance_group', 'maintenance_contact', 'maintenance_phone')
     search_fields = ('maintenance_group', 'maintenance_contact', 'maintenance_phone')
     readonly_fields = ('born_time',)
 
-class HostLogAdmin(admin.ModelAdmin):
-    raw_id_fields = ('sn',)
-    list_display = ('sn', 'state', 'peo', 'op', 'born_time')
-    readonly_fields = ('born_time', )
+class CPUAdmin(admin.ModelAdmin):
+    pass
 
-class HostSparePartAdmin(admin.ModelAdmin):
-    list_display = ('host', 'type', 'sn', 'vendor', 'mem', 'disk')
-    readonly_fields = ('born_time',)
-    raw_id_fields = ('host', )
 
-class NetworkSparePartAdmin(admin.ModelAdmin):
-    list_display = ('host', 'sn', 'type', 'vendor', 'born_time')
-    search_fields = ('sn', 'type', 'vendor')
-    list_filter = ('type', 'vendor')
-    readonly_fields = ('born_time', )
+class RAMAdmin(admin.ModelAdmin):
+    pass
+
+
+class DiskAdmin(admin.ModelAdmin):
+    pass
+
+
+class NICAdmin(admin.ModelAdmin):
+    pass
+
+
+class RaidAdaptorAdmin(admin.ModelAdmin):
+    pass
+
 
 admin.site.register(models.Host, HostAdmin)
 admin.site.register(models.NetworkDevice, NetworkDeviceAdmin)
@@ -219,9 +223,11 @@ admin.site.register(models.Equipment, EquipmentAdmin)
 admin.site.register(models.Software, SoftwareAdmin)
 admin.site.register(models.IndustryGroup, IndustryGroupAdmin)
 admin.site.register(models.Maintenance, MaintenanceAdmin)
-admin.site.register(models.HostLog, HostLogAdmin)
-admin.site.register(models.HostSparePart, HostSparePartAdmin)
-admin.site.register(models.NetworkSparePart, NetworkSparePartAdmin)
+admin.site.register(models.CPU, CPUAdmin)
+admin.site.register(models.RAM, RAMAdmin)
+admin.site.register(models.Disk, DiskAdmin)
+admin.site.register(models.RaidAdaptor, RaidAdaptorAdmin)
+admin.site.register(models.NIC, NICAdmin)
 # admin.site.register(models.DataCenter, DataCenterAdmin)
 # admin.site.register(models.Zone, ZoneAdmin)
 # admin.site.register(models.RackUnit, RackUnitAdmin)

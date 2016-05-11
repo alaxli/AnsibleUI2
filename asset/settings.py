@@ -235,3 +235,12 @@ spare_part_type_choices = (
     (u'内存', u'内存'),
     (u'硬盘', u'硬盘'),
 )
+
+# disk nic ram cpu
+
+disk_iface_choice = (
+        ('SATA', 'SATA'),
+        ('SAS', 'SAS'),
+        ('SCSI', 'SCSI'),
+        ('SSD', 'SSD'),
+)
