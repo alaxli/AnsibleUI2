@@ -18,6 +18,7 @@ from django.contrib import admin
 from .auth import views as auth_views
 from dashboard import views as dashboard_views
 from dashboard import urls as dashboard_urls
+from asset import urls as asset_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -25,4 +26,5 @@ urlpatterns = [
     url(r'^logout/$', auth_views.dt_logout, {'next_page': '/'}, name='logout'),
     url(r'^$', dashboard_views.dashboard, name='dashboard'),
     url(r'^dashboard/', include(dashboard_urls, namespace='dashboard')),
+    url(r'^asset/', include(asset_urls, namespace='asset')),
 ]

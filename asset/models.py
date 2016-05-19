@@ -12,6 +12,16 @@ sys.setdefaultencoding('utf8')
 # Create your models here.
 
 
+device_type = (
+    (u'switch', u'交换机'),
+    (u'firewall', u'防火墙'),
+    (u'router', u'路由器'),
+    (u'server', u'服务器'),
+    (u'storage', u'存储'),
+    (u'ap', u'无线ap'),
+)
+
+
 class CommonInfo(models.Model):
 
     class Meta:
@@ -20,25 +30,25 @@ class CommonInfo(models.Model):
     def __unicode__(self):
         return self.sn
 
-    node_name = models.CharField(verbose_name='设备名称', unique=True, max_length=50)
-    ip = models.GenericIPAddressField(verbose_name='IP地址', unique=True)
-    sn = models.CharField(verbose_name='SN号', unique=True)
-    type = models.CharField(verbose_name='设备类型', choices=device_type, max_length=20)
+    node_name = models.CharField(verbose_name='设备名称', unique=True, max_length=50, null=True)
+    ip = models.GenericIPAddressField(verbose_name='IP地址', unique=True, null=True)
+    sn = models.CharField(verbose_name='SN号', max_length=50, unique=True, null=True)
+    type = models.CharField(verbose_name='设备类型', choices=device_type, max_length=20, null=True)
     model = models.CharField(verbose_name='设备型号', max_length=100, null=True, blank=True)
     vendor = models.CharField(verbose_name='生产厂商', max_length=20, null=True, blank=True)
     status = models.CharField(verbose_name='资产状态', max_length=20, null=True, blank=True)
-    idc = models.ForeignKey(IDC, verbose_name='数据中心', null=True, blank=True)
+    idc = models.ForeignKey('IDC', verbose_name='数据中心', to_field='name', null=True, blank=True)
     zone = models.CharField(verbose_name='机柜区域', max_length=20, null=True, blank=True)
     cabinet = models.IntegerField(verbose_name='机柜号', null=True, blank=True)
     unit_start = models.IntegerField(verbose_name='机架起始位', null=True, blank=True)
     unit_end = models.IntegerField(verbose_name='机架结束位', null=True, blank=True)
     powers = models.IntegerField(verbose_name='电源数量', null=True, blank=True)
     be_from = models.CharField(verbose_name='资产来源', max_length=20, blank=True)
-    ownership = models.ForeignKey('IndustryGroup', verbose_name='资产归属', related_name='ownership', null=True, blank=True)
+    ownership = models.ForeignKey('IndustryGroup', verbose_name='资产归属', null=True, blank=True)
     purchase_date = models.DateField(verbose_name='采购日期', null=True, blank=True)
     contract = models.CharField(verbose_name='采购合同', max_length=50, null=True, blank=True)
-    maintenance_group = models.ForeignKey('Maintenance', verbose_name='维保单位', related_name='maintenance_group')
-    sys_admin = models.ForeignKey('Contact', verbose_name='系统管理员')
+    maintenance_group = models.ForeignKey('Maintenance', verbose_name='维保单位', to_field='maintenance_name', null=True)
+    sys_admin = models.ForeignKey('Contact', verbose_name='系统管理员', null=True)
 
     # 资源创建、修改时间戳
     born_time = models.DateTimeField(u'创建时间', default=datetime.datetime.now, auto_created=True)
@@ -70,7 +80,9 @@ class NetworkDevice(CommonInfo):
     def __unicode__(self):
         return self.sn
 
-    local_admin = models.ForeignKey('Contact', verbose_name='本地管理员', null=True, blank=True)
+    local_admin = models.ForeignKey(
+        'Contact', verbose_name='本地管理员', to_field='name', related_name='local_admin', null=True, blank=True
+    )
 
 
 class Storage(CommonInfo):
@@ -252,7 +264,7 @@ class IndustryGroup(models.Model):
 
 class Maintenance(models.Model):
     # 维保单位
-    maintenance_group = models.CharField(u'维保单位名称', unique=True, max_length=100, null=True)
+    maintenance_name = models.CharField(u'维保单位名称', unique=True, max_length=100, null=True)
     maintenance_contact = models.CharField(u'维保联系人', max_length=100, null=True)
     maintenance_phone = models.CharField(u'维保电话', max_length=20, null=True, blank=True)
     # 自动信息
@@ -269,11 +281,24 @@ class Maintenance(models.Model):
 
 
 class IDC(models.Model):
-    pass
+
+    class Meta:
+
+        verbose_name = 'IDC'
+        verbose_name_plural = 'IDC'
+
+    def __unicode__(self):
+        return self.name
+
+    name = models.CharField(verbose_name='IDC名称', unique=True, max_length=50)
+    # 地址、负责人、备注
 
 
 class Contact(models.Model):
-    pass
+    name = models.CharField(verbose_name='姓名', max_length=20, unique=True)
+    it_code = models.CharField(verbose_name='账号', max_length=20, unique=True)
+    phone = models.CharField(verbose_name='联系电话', max_length=20)
+    company = models.ForeignKey('IndustryGroup', null=True, blank=True)
 
 
 class CPU(models.Model):
@@ -375,11 +400,3 @@ class RaidAdaptor(models.Model):
         unique_together = ("asset", "slot")
 
 
-device_type = (
-    (u'switch', u'交换机'),
-    (u'firewall', u'防火墙'),
-    (u'router', u'路由器'),
-    (u'server', u'服务器'),
-    (u'storage', u'存储'),
-    (u'ap', u'无线ap'),
-)

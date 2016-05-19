@@ -5,97 +5,15 @@ from asset import models
 
 
 class HostAdmin(admin.ModelAdmin):
-    # inlines = (HostInline,)
-    raw_id_fields = ('maintenance_group_name',)
-    readonly_fields = ('born_time', )
-    list_display = ('sn', 'type', 'vendor', 'status')
-    search_fields = ('sn', 'type', 'vendor', 'product_model')
-    list_filter = ('type', 'vendor', 'idc', 'status')
-    fieldsets = [
-        ('基础资产信息', {'fields':
-                        ['type', 'vendor', 'product_model', 'sn', 'be_from', 'ownership', 'purchase_date',
-                         'idc', 'zone', 'cabinet', 'unit_start', 'unit_end', 'power', 'status', 'maintenance_date',
-                         'maintenance_group_name'],
-                         'classes': ['suit-tab', 'suit-tab-general']
-                    }
-         ),
-        (
-            '重要时间', {
-                'fields': [
-                    'born_time',
-                ],
-                'classes': ['suit-tab', 'suit-tab-general']
-            }
-        ),
-    ]
-    suit_form_tabs = (('general', '基础信息'), ('log', '资产状态变更'), ('config', '资产配置'))
-    suit_form_includes = (
-        # ('asset/host_tag/host_status_action.html', 'top', 'log'),
-        # ('asset/maintenance_log_table.html', 'bottom', 'log'),
-    )
+    pass
 
 
 class NetworkDeviceAdmin(admin.ModelAdmin):
-
-    list_display = ('type', 'vendor', 'product_model', 'sn', 'be_from')
-    search_fields = ('type', 'vendor', 'product_model', 'sn', 'be_from')
-    readonly_fields = ('born_time', )
-    list_filter = ('type', 'vendor', 'be_from')
-    fieldsets = [
-        ('基础资产信息', {'fields':
-                        ['type', 'vendor', 'product_model', 'sn', 'be_from', 'ownership', 'purchase_date', 'contract',
-                         'idc', 'zone', 'cabinet', 'unit_start', 'unit_end', 'status', 'power', 'maintenance_date',
-                         'maintenance_group'],
-                        'classes': ['suit-tab', 'suit-tab-general']
-                    }
-         ),
-        (
-            '重要时间', {
-                'fields': [
-                    'born_time',
-                ],
-                'classes': ['suit-tab', 'suit-tab-general']
-            }
-        )
-    ]
-    suit_form_tabs = (('general', '基础信息'), ('log', '资产状态变更'))
-    suit_form_includes = (
-        # ('asset/maintenance_log_table.html', 'bottom', 'maintenance'),
-    )
+    pass
 
 
 class StorageAdmin(admin.ModelAdmin):
-    list_display = ('device_type', 'manufacturers', 'sn', 'be_from', 'ownership', 'contract')
-    search_fields = ('device_type', 'manufacturers', 'sn', 'be_from', 'ownership', 'contract')
-    readonly_fields = ('born_time', )
-    list_filter = ('device_type', 'be_from', 'ownership')
-    fieldsets = [
-        (
-            '资产基础信息', {
-                'fields': [
-                    'device_type', 'manufacturers', 'product_model', 'sn', 'be_from', 'ownership', 'purchase_date',
-                    'contract', 'disk_num', 'disk_model', 'disk_fru', 'fsp_num', 'ext_fsp_num', 'power_num',
-                    'idc', 'zone', 'cabinet', 'unit_start', 'unit_end', 'state', 'maintenance_date',
-                    'maintenance_group',
-                ],
-                'classes': [
-                    'suit-tab', 'suit-tab-general'
-                ]
-            }
-        ),
-        (
-            '重要时间', {
-                'fields': [
-                    'born_time',
-                ],
-                'classes': ['suit-tab', 'suit-tab-general']
-            }
-        )
-    ]
-    suit_form_tabs = (('general', '基础信息'), ('log', '资产状态变更'))
-    suit_form_includes = (
-        #('asset/maintenance_log_table.html', 'bottom', 'maintenance'),
-    )
+    pass
 
 
 class TapeAdmin(admin.ModelAdmin):
@@ -190,7 +108,7 @@ class IndustryGroupAdmin(admin.ModelAdmin):
 
 
 class MaintenanceAdmin(admin.ModelAdmin):
-    list_display = ('maintenance_group', 'maintenance_contact', 'maintenance_phone')
+    list_display = ('maintenance_name', 'maintenance_contact', 'maintenance_phone')
     search_fields = ('maintenance_group', 'maintenance_contact', 'maintenance_phone')
     readonly_fields = ('born_time',)
 
