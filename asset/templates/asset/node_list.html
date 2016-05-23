@@ -3,62 +3,81 @@
 <section class="row">
     <div class="col-md-12">
         <ol class="breadcrumb">
-            <li class="active"><i class="fa fa-dashboard"></i> 资产管理</a>
+            <li class="active"><i class="fa fa-dashboard"></i> asset</a>
             </li>
         </ol>
     </div>
 </section>
 <section class="content">
-    <div class="box">
-    <div class="box-header">
-      <h3 class="box-title">Data Table With Full Features</h3>
-    </div><!-- /.box-header -->
-    <div class="box-body">
-      <table id="example" class="table table-bordered table-striped">
-        <thead>
-          <tr>
-            <th>Rendering engine</th>
-            <th>Browser</th>
-            <th>Platform(s)</th>
-            <th>Engine version</th>
-            <th>CSS grade</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Trident</td>
-            <td>Internet
-              Explorer 4.0</td>
-            <td>Win 95+</td>
-            <td> 4</td>
-            <td>X</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <th>Rendering engine</th>
-            <th>Browser</th>
-            <th>Platform(s)</th>
-            <th>Engine version</th>
-            <th>CSS grade</th>
-          </tr>
-        </tfoot>
-      </table>
-    </div><!-- /.box-body -->
-  </div><!-- /.box -->
+    <div class="content-fluid">
+        <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                    <th>Start date</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                    <th>Start date</th>
+                    <th>Salary</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>$320,800</td>
+                </tr>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>$320,800</td>
+                </tr>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>$320,800</td>
+                </tr>
+                <tr>
+                    <td>Tiger Nixon</td>
+                    <td>System Architect</td>
+                    <td>Edinburgh</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>$320,800</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
-{% endblock %}
-{% block script %}
 <script>
-  $(function () {
-    $('#example').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
+    $(function () {
+        $('#example').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true
+        });
     });
-  });
 </script>
 {% endblock %}
