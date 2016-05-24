@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dashboard',
     'asset.apps.AssetConfig',
+    'account',
 ]
 
 MIDDLEWARE_CLASSES = [
